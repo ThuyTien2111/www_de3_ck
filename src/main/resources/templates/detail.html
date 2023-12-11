@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Chi tiết ứng viên</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h2>Chi tiết ứng viên</h2>
+    <p></p>
+    <h5 th:text="${candidate.getFull_name()}"></h5>
+    <p th:text="${candidate.getEmail()}"></p>
+    <p th:text="${candidate.getPhone()}"></p>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Tên công ty</th>
+            <th>Vai trò</th>
+            <th>Mô tả công việc</th>
+            <th>Từ ngày</th>
+            <th>Tới ngày</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="e:${experiences}">
+            <td th:text="${e.getCompany()}"></td>
+            <td>
+                <span th:if="${e.getRole()==0}" th:text="ADMINSTRATOR"></span>
+                <span th:if="${e.getRole()==1}" th:text="STAFF"></span>
+                <span th:if="${e.getRole()==2}" th:text="MANAGER"></span>
+                <span th:if="${e.getRole()==3}" th:text="EXECUTIVE"></span>
+            </td>
+            <td th:text="${e.getWork_desc()}"></td>
+            <td th:text="${#temporals.format(e.getFrom_date(), 'yyyy-MM-dd')}"></td>
+            <td th:text="${#temporals.format(e.getTo_date(), 'yyyy-MM-dd')}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,12 +1,12 @@
-package vn.edu.iuh.fit;
+package vn.edu.iuh.fit.convert;
 
-public class roleForm {
+public class RoleForm {
     private String role;
 
-    public roleForm() {
+    public RoleForm() {
     }
 
-    public roleForm(String role) {
+    public RoleForm(String role) {
         this.role = role;
     }
 

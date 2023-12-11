@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách ứng viên</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h2>Danh sách ứng viên</h2>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Tên ứng viên</th>
+            <th>Email</th>
+            <th>Số điện thoại</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="c:${candidates}">
+            <td th:text="${c.getFull_name()}"></td>
+            <td th:text="${c.getEmail()}"></td>
+            <td th:text="${c.getPhone()}"></td>
+            <td>
+                <a th:href="@{'/candidates/'+${c.getCan_id()}}" class="btn btn-info">Chi tiết</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <p></p>
+    <!-- Pagination -->
+    <div>
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+                <li th:each="i:${#numbers.sequence(0, totalCandidates - 1)}" th:class="${currentPage == i} ? 'page-item active':'page-item' ">
+                    <a class="page-link" th:href="@{'/candidates'+'?page='+${i}+'&size'+${pageSize}}" th:text="${i+1}"></a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
